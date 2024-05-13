@@ -1,0 +1,20 @@
+{
+  "name": "01-crud-api",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "api-crud",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jhonatansousa/api-crud.git"
+  },
+  "author": "Jhonatan Sousa da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jhonatansousa/api-crud/issues"
+  },
+  "homepage": "https://github.com/Jhonatansousa/api-crud#readme"
+}
