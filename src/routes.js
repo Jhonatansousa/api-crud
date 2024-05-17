@@ -5,6 +5,8 @@ import { regexPath } from './utils/regexPath.js'
 
 const database = new Database()
 
+
+// as variáveis para pegar a data correta, fiz de forma bem completa com dia, mes, ano, horas e minutos
 const date = new Date()
 const dateType = {weekday: 'long', year: 'numeric',month: 'long', day: 'numeric'}
 const hourType = {hour: 'numeric', minute: 'numeric', second: 'numeric'}
@@ -12,6 +14,8 @@ const formattedDate = date.toLocaleDateString('pt-br', dateType)
 const formattedHour = date.toLocaleTimeString('pt-br', hourType)
 const formattedDateTime = `${formattedDate} às ${formattedHour}`
 
+
+// exporto lá pro arquivo server.js, onde aqui eu separo a parte da verificação de rotas e deixo a lógica aqui
 export const routes = [
     {
         method: 'GET', 
