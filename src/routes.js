@@ -32,14 +32,16 @@ export const routes = [
         method: 'POST', 
         path: regexPath('/task'),
         handler: (req, res) => {
-            const { title, description } = req.body
+            const { title, description, updated_at = null, completed_at = null } = req.body
 
             const task = {
                 id: randomUUID(),
                 title,
                 description,
-                created_at: formattedDateTime
-
+                created_at: formattedDateTime,
+                updated_at,
+                completed_at
+                
             } 
             database.insert('task', task)  
 
@@ -51,10 +53,31 @@ export const routes = [
         path: regexPath('/task/:id'),
         handler: (req, res) => {
             const { id } = req.params
-            const { name, email } = req.body
+            const { title, description } = req.body
+
+            if(!title || !description) {    
+                return res.writeHead(400, {'Content-Type' : 'application/json'}).end(JSON.stringify({ error: 'Title and Description are Required'}))
+            }
+            
             database.update('task', id, {
-                name,
-                email
+                title,
+                description,
+                updated_at : formattedDateTime
+            })
+            
+            return res.writeHead(204).end()
+        }
+        
+    },
+
+    {
+        method: 'PATCH',
+        path: regexPath('/task/:id/complete'),
+        handler: (req, res) => {
+            const { id } = req.params
+            
+            database.update('task', id, {
+                completed_at: formattedDateTime
             })
 
             return res.writeHead(204).end()

@@ -2,7 +2,7 @@
 export async function jsonConverter(req, res) {
     // array que será armazenado todas as partes (chunks)
     const buffers = []
-
+    // aqui é onde eu pego cada parte (chunk) e armazeno no buffer até que esteja completo para seguir com o processamento dos dados
     for await (const chunk of req) {
         buffers.push(chunk)
     }

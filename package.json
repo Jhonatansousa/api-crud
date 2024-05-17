@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Jhonatansousa/api-crud/issues"
   },
-  "homepage": "https://github.com/Jhonatansousa/api-crud#readme"
+  "homepage": "https://github.com/Jhonatansousa/api-crud#readme",
+  "dependencies": {
+    "csv-parse": "^5.5.6"
+  }
 }

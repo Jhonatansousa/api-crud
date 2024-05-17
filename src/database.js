@@ -48,16 +48,27 @@ export class Database {
         } else {
             this.#database[table] = [data]
         }
-        this.#persist
+        this.#persist()
         return data
     }
 
+    // primeiro param é a tabela 'task', a segunda o 'id' e a terceira é um objeto (title e description com seus valores respectivamente)
     update(table, id, data) {
+        //o índex da linha do bd.json será procurada
+        // na database eu procuro pela tabela, que é task, procuro o índex onde a linha seja a mesma que tenha o id passado no parametro
         const rowIndex = this.#database[table].findIndex(row => row.id === id)
 
+        // verifico se o rowIndex é um valor válido, maior que -1 => zero, 1, 2,...
         if(rowIndex > -1) {
-            this.#database[table][rowIndex] = {id, ...data}
+            // pego o index
+            const existingRow = this.#database[table][rowIndex]
+            // aqui eu pego os dados antigos com o existingRow e substituo apenas pelos dados novos "...data"
+            this.#database[table][rowIndex] = { ...existingRow, ...data }
             this.#persist()
+
+            // abaixo era o código antigo, que fazia com que eu trocava TODOS os dados pelo que era passado no put, apagando outros dados
+            // this.#database[table][rowIndex] = {id, ...data}
+            // this.#persist()
         }
     }
 
@@ -66,7 +77,7 @@ export class Database {
 
         if(rowIndex > -1) {
             this.#database[table].splice(rowIndex, 1)
-            this.#persist
+            this.#persist()
         }
     }
 }
