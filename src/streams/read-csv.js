@@ -38,3 +38,8 @@ run()
 function wait(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
 }
+
+/* o arquivo não roda sozinho, tenho que entrar pelo terminal, usando cd src > cd streams 
+e rodar o comando node read-csv.js
+assim irá executar o arquivo e o script adicionando as linhas csv diretamente no banco de dados local
+*/
